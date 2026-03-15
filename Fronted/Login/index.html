@@ -1,101 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page Music Shop</title>
-    <link rel="author" href="https://www.linkedin.com/in/cristina-correa-segade/" />
-    <link rel="stylesheet" href="css.css" />
+    <title>Login Bersamo</title>
+    <link rel="stylesheet" href="css.css"/>
     <script src="scripts.js" defer></script>
-
-    <!-- Link a Font Awesome -->
-    <script
-      src="https://kit.fontawesome.com/a572cee94c.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- Link Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&family=Open+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Flavicon -->
-    <link rel="shortcut icon" type="image/jpg" href="img/flavicon-music.png" />
-
-    <!-- Meta -->
-    <meta name="keywords" content="html,css,responsive,3d icon" />
-    <meta
-      name="description"
-      content="Login Page de una tienda de música hecha con HTML, CSS y JavaScript"
-    />
-    <meta name="author" content="Cristina Correa" />
-    <meta name="generator" content="VSCode" />
-    <meta name="theme-color" content="#000" />
-
-    <meta name="google" content="nositelinkssearchbox" />
-    <meta name="google" content="notranslate" />
-    <meta name="robots" content="index, nofollow" />
-
-    <meta property="og:title" content="Login Page Music Shop" />
-    <meta
-      property="og:description"
-      content="Login Page de una tienda de música hecha con HTML, CSS y JavaScript"
-    />
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
   </head>
   <body>
     <main class="main-container">
       <section class="right">
-        <h1 class="title">
-          <i class="fa-brands fa-itunes-note"></i> Sign Into Account
-          <i class="fa-brands fa-itunes-note"></i>
-        </h1>
-        <i class="fa-solid fa-compact-disc"></i>
-        <form class="form-container">
-          <label class="username" for="mail">
-            <i class="fa-solid fa-envelope"></i>
+        <h1 class="title">¡Te damos la bienvenida!</h1>
+        <form id="formulario" class="form-container" action="login.php">
+          <label class="username" for="correo">
             <input
-              id="mail"
+              id="correo"
               type="email"
               class="user-input"
-              placeholder="E-Mail"
-              pattern="^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$"
+              placeholder="Dirección de email"
               required
             />
           </label>
-          <p id="errorMail" class="errorMensajeForm"></p>
+          <p id="erroCorreo" class="errorMensajeForm"></p>
           <div id="contra">
-            <label class="password" for="contrasinal">
-              <i class="fa-solid fa-lock"></i>
+            <label class="password" for="contrasena">
               <input
-                id="contrasinal"
+                id="contrasena"
                 type="password"
                 class="pass-input"
-                placeholder="Password"
-                minlength="6"
-                maxlength="12"
-                pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,12}$"
+                placeholder="Contraseña"
                 required
               />
-              <i class="fa-regular fa-eye-slash" id="contrasinal_visibility"></i>
             </label>
-            <p id="errorContrasinal" class="errorMensajeForm"></p>
+            <p id="errorContrasena" class="errorMensajeForm"></p>
           </div>
-          <label id="labelRemember" class="keepme" for="remember">
-            <input id="remember" type="checkbox" checked="true" />
-            Remember me
-          </label>
-          <button type="submit" id="enviar">Login</button>
-          <p class="link">
-            Forgot Password?
-            <a href="#">Click here</a>
-          </p>
+
+          <button type="submit" id="enviar">Acceder a Bersamo</button>
         </form>
       </section>
     </main>
-    <footer class="attribution">
+    <!--<footer class="attribution">
       <small>
         Icono de Flavicon diseñado por
         <a
@@ -105,6 +50,6 @@
           RIkas Dzihab - Flaticon</a
         >
       </small>
-    </footer>
+    </footer>-->
   </body>
 </html>

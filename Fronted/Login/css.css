@@ -5,24 +5,27 @@
 }
 
 .main-container {
-  background-image: url(img/bg-img.jpg);
+  /* background-image: url(img/bg-img.jpg); */
   background-size: cover;
-  height: 97vh;
+  /* Permite scroll si se encoge mucho la pantalla */
+  min-height: 100vh;
+  /* El contenedor centra con Flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .right {
-  position: absolute;
-  width: 360px;
-  left: 40%;
-  height: 580px;
-  top: calc(50% - 580px / 2);
+  width: 500px;
+  max-width: 100%; /* Si la pantalla es menos de 360px, la caja se encoge */
+  height: 880px;
   background: rgba(0, 0, 0, 0.9);
   border-radius: 25px;
   text-align: center;
 }
 
 .title {
-  font-family: Sansation;
   font-style: normal;
   font-weight: bold;
   font-size: 25px;
@@ -30,21 +33,6 @@
   align-items: center;
   font-family: "Open Sans", sans-serif;
   color: whitesmoke;
-}
-
-.title .fa-brands {
-  font-size: 15px;
-  margin: 0 10px;
-}
-
-.title .fa-brands:nth-child(2) {
-  transform: rotateY(180deg);
-}
-
-.fa-compact-disc {
-  font-size: 70px;
-  margin-top: -30px;
-  color: rgba(242, 246, 250, 0.7);
 }
 
 form {
@@ -68,15 +56,20 @@ input[type="text"] {
   box-sizing: border-box;
   text-align: center;
   overflow: hidden;
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
-.contra {
+
+#contra {
   margin-bottom: 50px;
 }
 
-.errorMensajeForm{
+.errorMensajeForm {
   margin-bottom: 20px;
+  /* Damos una altura mínima para que al salir el error el formulario no salte bruscamente */
+  min-height: 15px; 
+  color: red;
+  font-family: "Open Sans", sans-serif;
 }
 
 ::placeholder {
@@ -84,55 +77,9 @@ input[type="text"] {
   font-size: 18px;
 }
 
-label .fa-envelope {
-  font-size: 20px;
-  position: absolute;
-  padding: 24px 32px;
-  margin-top: -5px;
-  margin-left: 5px;
-  color: rgba(242, 246, 250, 0.7);
-}
-
-label .fa-lock {
-  font-size: 20px;
-  position: absolute;
-  padding: 24px 32px;
-  margin-left: 7px;
-  margin-top: -6px;
-  color: rgba(242, 246, 250, 0.7);
-}
-
-.keepme {
-  color: #d4efff;
-  font-family: "Nunito Sans", sans-serif;
-}
-
-label .fa-regular {
-  font-size: 15px;
-  position: absolute;
-  padding: 25px 0px;
-  margin-left: -60px;
-  margin-top: -6px;
-  color: rgba(210, 230, 250, 0.7);
-}
-
-label i.fa-eye {
-  color: #88183a;
-}
-
-input[type="checkbox"] {
-  vertical-align: middle;
-  margin: 30px 3px;
-  font-weight: bold;
-  height: 18px;
-  width: 18px;
-}
-
 button {
   width: 260px;
   height: 45px;
-  left: 1273px;
-  top: 780px;
   margin: 0px 20px 20px;
   font-weight: bold;
   font-size: 20px;
@@ -142,6 +89,13 @@ button {
   border: none;
   background: rgba(255, 255, 255, 0.89);
   border-radius: 25px;
+}
+
+/* Efecto hover para que el botón reaccione al pasar el ratón */
+button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.02);
+  transition: 0.2s ease-in-out;
 }
 
 .link {
@@ -157,7 +111,7 @@ button {
   color: #e6f6ff;
   font-weight: bold;
 }
-
+/*
 footer {
   flex-shrink: 0;
   background-color: black;
@@ -180,31 +134,42 @@ small > a {
   color: #fff;
   font-size: 11px;
 }
+*/
 
-/* Para JS */
+/* ----- CLASES DINÁMICAS PARA JS ----- */
 .error {
-  border: solid 2px rgb(253, 29, 29);
+  border: solid 2px rgb(253, 29, 29) !important;
 }
 
 .mensajeError {
   color: rgb(255, 47, 47);
-  font-size: smaller;
+  font-size: 12px; 
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Open Sans", 'Times New Roman', Times, serif; /* Unificado con el resto del diseño */
 }
 
 .normal {
-  font-size: normal;
   font-weight: normal;
 }
 
-
-@media only screen and (max-width: 900px) {
-  .main-container {
-    background: linear-gradient(138.56deg, #5695cf 23.44%, #88183a 89.5%);
+/* ----- ADAPTACIÓN PARA MÓVILES ----- */
+@media only screen and (max-width: 400px) {
+  
+  .right {
+    width: 100%;
+    height: auto; /* Permite que crezca si los mensajes de error ocupan espacio */
+    min-height: 400px;
+    border-radius: 15px;
+    padding: 30px 10px;
+  }
+  
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    width: 90%; /* Los inputs se adaptan al móvil en vez de tener ancho fijo */
   }
 
-  .right {
-    left: calc(68% - 500px / 2);
+  button {
+    width: 90%;
   }
 }

@@ -1,149 +1,70 @@
-const EMAIL = document.getElementById("mail");
-const CONTRASINAL = document.getElementById("contrasinal");
-const ERROR_MAIL = document.getElementById("errorMail");
-const ERROR_CONTRASINAL = document.getElementById("errorContrasinal");
-const CONTRASINAL_VISIBILITY = document.getElementById(
-  "contrasinal_visibility"
-);
-const RECORDAR = document.getElementById("remember");
-const ENVIAR = document.getElementById("enviar");
-
-ENVIAR.addEventListener("click", validar, false);
-
-function validarEMail() {
-  if (!EMAIL.checkValidity()) {
-    if (EMAIL.validity.valueMissing) {
-      error(EMAIL, "Debes introducir un mail");
-    }
-
-    if (EMAIL.validity.patternMismatch) {
-      error(EMAIL, "El mail debe de ser válido");
-    }
-
-    return false;
-  }
-
-  return true;
-}
-
-function validarContrasinal() {
-  let regexNumero = /[0-9]/;
-  let regexMayus = /[A-Z]/;
-  let regexSimbolo = /\W/;
-
-  if (!CONTRASINAL.checkValidity()) {
-    if (CONTRASINAL.validity.valueMissing) {
-      error(CONTRASINAL, "Debes introducir una contraseña");
-    }
-
-    if (CONTRASINAL.validity.patternMismatch) {
-      if (
-        !regexMayus.test(CONTRASINAL.value) &&
-        !regexNumero.test(CONTRASINAL.value) &&
-        !regexSimbolo.test(CONTRASINAL.value)
-      ) {
-        error(
-          CONTRASINAL,
-          "La contraseña debe tener al menos un número, una letra mayúscula y un símbolo"
-        );
-      } else if (!regexMayus.test(CONTRASINAL.value)) {
-        error(CONTRASINAL, "La contraseña debe tener al menos una mayúscula");
-      } else if (!regexNumero.test(CONTRASINAL.value)) {
-        error(CONTRASINAL, "La contraseña debe tener al menos un número");
-      } else if (!regexSimbolo.test(CONTRASINAL.value)) {
-        error(CONTRASINAL, "La contraseña debe tener al menos un símbolo");
-      } else {
-        error(CONTRASINAL, "La contraseña debe tener entre 6 y 12 caracteres");
-      }
-    }
-
-    return false;
-  }
-
-  return true;
-}
-
-function validar(e) {
-  borrarError();
-  e.preventDefault();
-
-  let emailValido = validarEMail();
-  let contrasinalValida = validarContrasinal();
-
-  if (
-    emailValido &&
-    contrasinalValida &&
-    confirm("¿Desea acceder al área cliente?")
-  ) {
-    if (RECORDAR.checked) {
-      localStorage.setItem("mail", EMAIL.value);
-    }
-
-    alert("Ha entrado al área cliente");
-    return true;
-  } else {
-    return false;
-  }
-}
-
-window.addEventListener("DOMContentLoaded", (e) => {
-  let mail = localStorage.getItem("mail");
-
-  if (mail) {
-    EMAIL.value = mail;
-  }
+// 1. Inicializamos la librería JustValidate
+const validador = new JustValidate("#formulario", {
+  errorFieldCssClass: "error",
+  errorLabelCssClass: "mensajeError",
+  errorLabelStyle: {
+    color: "rgb(255, 47, 47)",
+  },
 });
 
-function error(elemento, mensaje) {
-  let idElemento = elemento.id;
+// Reglas CORREO
+validador.addField("#correo", [
+  {
+    rule: "required",
+    errorMessage: "Debes introducir un correo",
+  },
+  {
+    rule: "email",
+    errorMessage: "El correo debe ser válido",
+  },
+]);
 
-  elemento.className = "error";
-  elemento.focus();
+// Reglas CONTRASEÑA
+validador.addField("#contrasena", [
+  {
+    rule: "required",
+    errorMessage: "Debes introducir una contraseña",
+  },
+  {
+    rule: "minLength",
+    value: 6,
+    errorMessage: "Mínimo 6 caracteres",
+  },
+  {
+    rule: "maxLength",
+    value: 12,
+    errorMessage: "Máximo 12 caracteres",
+  },
+  {
+    rule: "customRegexp",
+    value: /[A-Z]/,
+    errorMessage: "Debe tener al menos una mayúscula",
+  },
+  {
+    rule: "customRegexp",
+    value: /[0-9]/,
+    errorMessage: "Debe tener al menos un número",
+  },
+  {
+    rule: "customRegexp",
+    value: /\W/,
+    errorMessage: "Debe tener al menos un símbolo",
+  },
+]);
 
-  switch (idElemento) {
-    case "mail":
-      ERROR_MAIL.innerHTML = mensaje;
-      ERROR_MAIL.className = "mensajeError";
-      break;
-    case "contrasinal":
-      ERROR_CONTRASINAL.innerHTML = mensaje;
-      ERROR_CONTRASINAL.className = "mensajeError";
-      break;
+// Se ejecuta al pulsar Enviar si no haber errores y enviar a a lologin.php
+validador.onSuccess((evento) => {
+  const correoInput = document.getElementById("correo").value;
+  localStorage.setItem("correo", correoInput);
+  alert("Ha entrado al área cliente");
+
+  evento.target.submit(); //  ir a login.php
+});
+
+//Cargar correo guardado al abrir la página
+window.addEventListener("DOMContentLoaded", () => {
+  let correoGuardado = localStorage.getItem("correo");
+  if (correoGuardado) {
+    document.getElementById("correo").value = correoGuardado;
   }
-}
-
-function borrarError() {
-  let formulario = document.forms[0];
-  let errores = [ERROR_MAIL, ERROR_CONTRASINAL];
-
-  for (let i = 0; i < formulario.elements.length; i++) {
-    formulario.elements[i].className = "";
-  }
-
-  for (let j = 0; j < errores.length; j++) {
-    errores[j].className = "normal";
-    errores[j].innerHTML = "ddddd";
-  }
-}
-
-CONTRASINAL_VISIBILITY.addEventListener("click", showPassword, false);
-
-let cont = 1;
-
-function showPassword() {
-  if (CONTRASINAL.type === "password") {
-    CONTRASINAL.type = "text";
-  } else {
-    CONTRASINAL.type = "password";
-  }
-
-  cont++;
-
-  if (cont % 2 == 0) {
-    CONTRASINAL_VISIBILITY.classList.remove("fa-eye-slash");
-    CONTRASINAL_VISIBILITY.classList.add("fa-eye");
-  } else {
-    CONTRASINAL_VISIBILITY.classList.remove("fa-eye");
-    CONTRASINAL_VISIBILITY.classList.add("fa-eye-slash");
-  }
-}
+});
