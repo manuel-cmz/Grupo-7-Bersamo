@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $err_contrasena = "Inserta una contraseña";
         $correcto = false;
     }elseif(!preg_match("/^(?=[^A-Z]*[A-Z])(?=[^0-9]*[0-9])(?=[^\w]*[\w]).{6,12}$/",$contrasena)){
-        $err_correo = "La contraseña es válida.";
+        $err_contrasena = "La contraseña es válida.";
     }else{
         $err_contrasena = "La contraseña no cumple con los requisitos.";
         $correcto = false;
