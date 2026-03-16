@@ -45,8 +45,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($telefono == ""){
         $err_telefono = "Inserta un numero de telefono";
         $correcto = false;
+    }elseif(preg_match('/^[0-9]{7,15}$/',$telefono)){
+        echo "telefono valido";
     }else {
-        $err_telefono = "El numero de telefono es valido";
+        $err_telefono = "El numero de telefono no es valido";
     }
 
     if($correcto){
