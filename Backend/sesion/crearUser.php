@@ -8,6 +8,8 @@ require "conexion.php";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $correo = $_POST["correo"];
     $contrasena = $_POST["contrasena"];
+    $edad = $_POST["edad"];
+    $telefono = $_POST["telefono"];
     $correcto = true;
     // Validación de correo 
     if($correo == ""){
@@ -31,6 +33,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }else{
         $err_contrasena = "La contraseña no cumple con los requisitos.";
         $correcto = false;
+    }
+    // Validacion edad
+    if($edad == ""){
+        $err_edad = "Inserta una edad";
+        $correcto = false;
+    }else{
+    $err_edad = "Edad valida";
+    }
+    // Validacion telefono
+    if($telefono == ""){
+        $err_telefono = "Inserta un numero de telefono";
+        $correcto = false;
+    }else {
+        $err_telefono = "El numero de telefono es valido";
     }
 
     if($correcto){
