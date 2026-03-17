@@ -1,0 +1,112 @@
+-- Eliminar usuario si existe
+DROP USER IF EXISTS 'MEDAC'@'localhost';
+
+-- Eliminar base de datos si existe
+DROP SCHEMA IF EXISTS peliculas_bd;
+
+CREATE USER 'MEDAC'@'localhost' IDENTIFIED BY 'MEDAC';
+GRANT ALL PRIVILEGES ON *.* TO 'MEDAC'@'localhost';
+FLUSH PRIVILEGES;
+
+-- CREACIÓN DE LA BASE DE DATOS
+
+DROP SCHEMA IF EXISTS tienda_bd;
+CREATE SCHEMA tienda_bd;
+USE tienda_bd;
+
+
+CREATE TABLE usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    edad INT,
+    telefono INT,
+    rol ENUM('root', 'cliente') DEFAULT 'cliente'
+) ENGINE=InnoDB;
+
+
+CREATE TABLE vendedores (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    logo VARCHAR(255)
+) ENGINE=InnoDB;
+
+
+CREATE TABLE pedidos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fecha DATE NOT NULL,
+    id_usuario INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+
+CREATE TABLE pagos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_pedido INT NOT NULL UNIQUE,
+    importe FLOAT NOT NULL,
+    metodo_pago ENUM('Bizum', 'Tarjeta', 'Paypal') NOT NULL,
+    bizum_telefono VARCHAR(20),
+    tarjeta_numero VARCHAR(20),
+    tarjeta_titular VARCHAR(100),
+    tarjeta_cvv INT,
+    paypal_email VARCHAR(100),
+    FOREIGN KEY (id_pedido) REFERENCES pedidos(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+
+CREATE TABLE productos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(150) NOT NULL,
+    tipo VARCHAR(50),
+    estado VARCHAR(50),
+    imagen VARCHAR(255),
+    precio FLOAT NOT NULL,
+    zona VARCHAR(100),
+    enlace VARCHAR(255),
+    id_pedido INT NULL,
+    FOREIGN KEY (id_pedido) REFERENCES pedidos(id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+
+CREATE TABLE usuario_busca_producto (
+    id_usuario INT NOT NULL,
+    id_producto INT NOT NULL,
+    PRIMARY KEY (id_usuario, id_producto),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+
+CREATE TABLE vendedor_producto (
+    id_vendedor INT NOT NULL,
+    id_producto INT NOT NULL,
+    PRIMARY KEY (id_vendedor, id_producto),
+    FOREIGN KEY (id_vendedor) REFERENCES vendedores(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+
+
+-- Insertar Usuario Root y un Cliente
+INSERT INTO usuarios (nombre, email, edad, telefono, rol) VALUES 
+('Admin Root', 'root@sistema.com', 30, 900000000, 'root'),
+('Alejandro Cliente', 'alejandro@correo.com', 25, 600111222, 'cliente');
+
+
+INSERT INTO vendedores (nombre, logo) VALUES 
+('Tienda Tech', 'logo_tech.png');
+
+
+INSERT INTO productos (nombre, tipo, estado, precio) VALUES 
+('Laptop Pro', 'Electrónica', 'Nuevo', 1200.00);
+
+
+INSERT INTO vendedor_producto (id_vendedor, id_producto) VALUES (1, 1);
+
+
+INSERT INTO usuario_busca_producto (id_usuario, id_producto) VALUES (2, 1);
+
+
+SELECT 'Usuarios' AS Tabla, COUNT(*) FROM usuarios
+UNION SELECT 'Productos', COUNT(*) FROM productos
+UNION SELECT 'Relaciones Vendedor-Prod', COUNT(*) FROM vendedor_producto;
