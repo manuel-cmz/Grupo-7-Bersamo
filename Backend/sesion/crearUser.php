@@ -63,10 +63,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $contrasena_cifrada = password_hash($contrasena, PASSWORD_DEFAULT);
         $consulta = "INSERT INTO usuarios (nombre, email, contrasena, edad, telefono) VALUES ($usuario, '$correo', '$contrasena_cifrada', '$edad', '$telefono')";
         if($_conexion->query($consulta)){
-            header("Location: ../../Fronted/Login/login.html");
+            header("Location: /Fronted/Login/login.html");
             exit;
         }else{
-            header("Location: ../../Fronted/Sign Up/signUp.html?error=db"); //error no se ha podido insertar en la base de datos
+            header("Location: /Fronted/SignUp/signUp.html?error=db"); //error no se ha podido insertar en la base de datos
             exit;
         }
     }
