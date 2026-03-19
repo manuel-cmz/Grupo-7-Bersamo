@@ -9,7 +9,7 @@ window.onload = function () {
   });
 
   // Reglas Usuario
-  validador.addField("#nombreUsuario", [
+  validador.addField("#usuario", [
     {
       rule: "required",
       errorMessage: "Debes introducir un usuario",

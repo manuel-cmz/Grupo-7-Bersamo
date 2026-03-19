@@ -19,6 +19,12 @@ validador.addField("#email", [
     errorMessage: "El email debe ser válido",
   },
 ]);
+  validador.addField("#usuario", [
+    {
+      rule: "required",
+      errorMessage: "Debes introducir un usuario",
+    },
+  ]);
 //Reglas EDAD 
   validador.addField("#edad", [
     { rule: "required", errorMessage: "Inserta una edad" },
