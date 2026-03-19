@@ -61,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if($correcto){
         $contrasena_cifrada = password_hash($contrasena, PASSWORD_DEFAULT);
-        $consulta = "INSERT INTO usuarios (nombre, email, contrasena, edad, telefono) VALUES ($usuario, '$correo', '$contrasena_cifrada', '$edad', '$telefono')";
+        $consulta = "INSERT INTO usuarios (nombre, email, contrasena, edad, telefono) VALUES ('$usuario', '$correo', '$contrasena_cifrada', '$edad', '$telefono')";
         if($_conexion->query($consulta)){
             header("Location: /Fronted/Login/login.html");
             exit;
