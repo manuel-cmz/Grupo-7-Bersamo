@@ -7,6 +7,7 @@ require "conexion.php";
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $correo = $_POST["correo"];
+    $usuario = $_POST["usuario"]
     $contrasena = $_POST["contrasena"];
     $edad = $_POST["edad"];
     $telefono = $_POST["telefono"];
@@ -34,6 +35,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $err_contrasena = "La contraseña no cumple con los requisitos.";
         $correcto = false;
     }
+    // Validacion usuario
+    if($usuario == ""){
+        $err_usuario = "Inserta un usuario";
+        $correcto = false;
+    }else{
+    $err_usuario = "Usuario valida";
+    }
     // Validacion edad
     if($edad == ""){
         $err_edad = "Inserta una edad";
@@ -53,11 +61,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if($correcto){
         $contrasena_cifrada = password_hash($contrasena, PASSWORD_DEFAULT);
-        $consulta = "INSERT INTO usuarios (nombre, contrasena, admin) VALUES ('$correo', '$contrasena_cifrada','$admin')";
+        $consulta = "INSERT INTO usuarios (nombre, email, contrasena, edad, telefono) VALUES ($usuario, '$correo', '$contrasena_cifrada', '$edad', '$telefono')";
         if($_conexion->query($consulta)){
-            echo "<div class='alert alert-success'>correo registrado correctamente</div>";
+            header("location: ../Fronted/Login/indexLogin.html");
+            exit;
         }else{
-            echo "<div class='alert alert-danger'>No se ha podido registrar el correo</div>";
+            header("location: ../Fronted/Sign Up/indexLogin.html?error=db"); //error no se ha podido insertar en la base de datos
+            exit;
         }
     }
 }
