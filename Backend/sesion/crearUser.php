@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($correo == ""){
         $err_correo = "Inserta un correo";
         $correcto = false;
-    }elseif (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    }elseif (filter_var($correo, FILTER_VALIDATE_EMAIL)) {
     $err_correo = "El correo es válido.";
     }else {
     $err_correo = "El correo no tiene un formato correcto.";

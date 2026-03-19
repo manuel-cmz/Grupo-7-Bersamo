@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sing Up Bersamo</title>
+    <link rel="stylesheet" href="cssSignUp.css" />
+    <script src="scriptsSignUp.js"></script>
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+  </head>
+  <body>
+    <main class="main-container">
+      <header>
+        <img src="Archivos/img/Imagotipo.png" alt="Bersamo" id="logo" />
+      </header>
+      <section class="estructuraFormulario">
+        <h1 class="tiulo">Crea una cuenta en Bersamo</h1>
+        <form
+          id="formulario"
+          class="form-container"
+          action="/Backend/sesion/crearUser.php"
+          method="post"
+        >
+          <label for="correo">
+            <input
+              id="correo"
+              name="correo"
+              type="email"
+              class="user-input"
+              placeholder="Dirección de email"
+              required
+            />
+          </label>
+          <label for="edad">
+            <input
+              id="edad"
+              name="edad"
+              type="integer"
+              class="user-input"
+              placeholder="Edad"
+              required
+            />
+          </label>
+          <label for="telefono">
+            <input
+              id="telefono"
+              name="telefono"
+              type="integer"
+              class="user-input"
+              placeholder="Telefono Movil"
+              required
+            />
+          </label>
+
+          <label class="password" for="contrasena">
+            <input
+              id="contrasena"
+              name="contrasena"
+              type="password"
+              class="pass-input"
+              placeholder="Contraseña"
+              required
+            />
+          </label>
+          <p id="errorContrasena" class="errorMensajeForm"></p>
+
+          <button type="submit" id="enviar">Crear cuenta</button>
+        </form>
+        <p>
+          Si ya tienes cuenta,
+          <a href="/Fronted/Login/indexLogin.html" class="link"
+            >Inicia sesión</a
+          >
+        </p>
+      </section>
+      <img
+        src="Archivos/img/vivid-blurred-colorful-background.jpg"
+        alt=""
+        id="imagen-lateral"
+      />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+/*Contenedor principal: Flex en FILA para dividir la pantalla 50/50 */
+.main-container {
+  background-color: whitesmoke;
+  height: 100vh;
+  display: flex;
+  flex-direction: row; 
+}
+
+/* El lado izquierdo  */
+.seccion-izquierda {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* El lado derecho (La imagen) */
+#imagen-lateral { 
+  width: 100%;
+}
+
+/* la caja blanca del formulario */
+.estructuraFormulario {
+  width: 100%;
+  width: 650px;
+  background: white;
+  border-radius: 25px;
+  text-align: center;
+  padding: 40px 20px;
+  /* Una sombrita muy sutil para que despegue del fondo whitesmoke */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+}
+
+
+#logo {
+  width: 220px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Títulos  */
+.tiulo {
+  font-weight: bold;
+  font-size: 25px;
+  color: #ec4490;
+  margin-bottom: 20px;
+  line-height: normal;
+}
+
+/* inputs redondos y centrados */
+input {
+  outline: none;
+  background: none;
+  font-size: 14px;
+  color: black;
+  border: 1px solid #ec4490; /* Borde rosa */
+  width: 100%;
+  width: 280px;
+  height: 45px;
+  margin: 5px auto; /* Centrados automáticamente */
+  border-radius: 25px;
+  box-sizing: border-box;
+  text-align: center;
+  display: block; /* Necesario para que el margin auto los centre */
+  transition: 0.2s ease-in-out;
+}
+
+input:hover, input:focus {
+  transform: scale(1.02);
+  border-width: 2px;
+}
+
+::placeholder {
+  color: #555;
+  font-size: 15px;
+}
+
+/* Altura para  errores */
+.errorMensajeForm {
+  color: #ec4490;
+  font-size: 12px;
+  height: 15px; 
+  margin-bottom: 5px;
+}
+
+button {
+  width: 100%;
+  width: 260px;
+  height: 45px;
+  margin: 15px auto 20px auto;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  color: black;
+  border: none;
+  background: #f8c4db;
+  border-radius: 25px;
+  display: block;
+  transition: 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
+
+.link {
+  color: #ec4490;
+  font-size: 14px;
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+/* --- ADAPTACIÓN MÓVIL --- */
+@media screen and (width: 800px) {
+  .main-container {
+    flex-direction: column; /* Todo en una columna */
+  }
+  
+  .seccion-izquierda {
+    width: 100%;
+    height: 100vh; /* Que ocupe toda la pantalla */
+  }
+
+  .imagen-lateral {
+    display: none; /* Ocultamos la imagen decorativa en el móvil */
+  }
+}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Bersamo</title>
+    <link rel="stylesheet" href="cssLogin.css" />
+    <script src="scriptsLogin.js"></script>
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+  </head>
+  <body>
+    
+    <main class="main-container">
+      <header>
+      <img src="Archivos/img/Imagotipo.png" alt="Bersamo" id="logo" >
+    </header>
+      <section class="estructuraFormulario">
+        <h1 class="tiulo">¡Te damos la bienvenida!</h1>
+        <form id="formulario" class="form-container" action="/Backend/sesion/login.php" method="post">
+          <label for="usuario">
+            <input
+              id="usuario"
+              class="usuario-input"
+              placeholder="Usuario"
+              required
+            />
+          </label>
+          <p id="errousUsuario" class="errorMensajeForm"></p>
+          <div id="contra">
+            <label class="password" for="contrasena">
+              <input
+                id="contrasena"
+                type="password"
+                class="pass-input"
+                placeholder="Contraseña"
+                required
+              />
+            </label>
+            <p id="errorContrasena" class="errorMensajeForm"></p>
+          </div>
+
+          <button type="submit" id="enviar">Acceder a Bersamo</button>
+        </form>
+        <p>Si no tienes cuenta, <a href="/Fronted/Sign Up/indexSignUp.html" class="link">Registrate</a></p>
+      </section>
+    </main>
+  </body>
+</html>

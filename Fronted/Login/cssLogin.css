@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  
+}
+#logo{
+  width: 150px; 
+  height: 150px;
+}
+.main-container {
+  background-color: whitesmoke;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /*  espacio logo y caja blanca */
+}
+
+
+.estructuraFormulario {
+  width: 500px;
+  height: 500px;
+  background:  white ;
+  border-radius: 25px;
+  text-align: center;
+  
+}
+
+.tiulo {
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 145px;
+  align-items: center;
+  color: #ec4490;
+}
+
+input {
+  background: none;
+  font-size: 14px;
+  border: 2px solid #ec4490;
+  width: 280px;
+  height: 45px;
+  margin: 5px;
+  border-radius: 25px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Hover inputs */
+input:hover {
+  transform: scale(1.02);
+  transition: 0.2s ease-in-out;
+}
+
+.errorMensajeForm {
+  margin-bottom: 20px;
+  /* altura salir error */
+  height: 15px; 
+  font-size: 8px; 
+}
+
+::placeholder {
+  color: black;
+  font-size: 18px;
+}
+
+button {
+  width: 260px;
+  height: 45px;
+  margin: 0px 20px 20px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 28px;
+  cursor: pointer;
+  color: black;
+  border: none;
+  background: #f8c4db;
+  border-radius: 25px;
+}
+
+/* Hover botón reaccione pasar el ratón */
+button:hover {
+  transform: scale(1.02);
+  transition: 0.2s ease-in-out;
+}
+
+.link {
+  color: #ec4490;
+  font-size: 15px;
+}
+
+/* Pantallas -600px (movil)*/
+@media screen and (max-width: 600px) {
+  
+  .main-container {
+    height: auto;      /* Permite que la pantalla crezca si el teclado del móvil aparece */
+    min-height: 100vh;
+    padding: 20px 10px;
+  }
+
+  .estructuraFormulario {
+    width: 95%;        /* Ya no es fija de 500px, ocupa casi todo el ancho */
+    height: auto;      /* Deja que crezca según el contenido */
+    padding-bottom: 30px; 
+    border-radius: 20px;
+  }
+
+  .title {
+    line-height: 80px; /* Reducimos el hueco gigante en el móvil */
+    font-size: 22px;
+  }
+
+  img {
+    width: 120px;      /* Logo un poco más pequeño para que no coma pantalla */
+    height: 120px;
+  }
+
+  input {
+    width: 85%;        /* Los inputs se estiran casi hasta el borde de la caja blanca */
+    font-size: 16px;   /* Evita que el iPhone haga zoom automático al escribir */
+  }
+
+  button {
+    width: 85%;        /* El botón también se adapta */
+    margin: 10px 0;
+  }
+
+  ::placeholder {
+    font-size: 15px;   /* Texto más pequeño para que no se corte en móviles mini */
+  }
+}
