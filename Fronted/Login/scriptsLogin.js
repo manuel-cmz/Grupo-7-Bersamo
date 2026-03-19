@@ -10,7 +10,7 @@ window.onload = function () {
     validateOnBlur: false,   // No muestra al salir del input
   });
 
-  // 2. Reglas CORREO
+  // Reglas CORREO
   validador.addField("#usuario", [
     {
       rule: "required",
@@ -18,7 +18,7 @@ window.onload = function () {
     },
   ]);
 
-  // 3. Reglas CONTRASEÑA
+  // Reglas CONTRASEÑA
   validador.addField("#contrasena", [
     {
       rule: "required",
