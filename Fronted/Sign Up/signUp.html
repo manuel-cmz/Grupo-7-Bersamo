@@ -21,13 +21,22 @@
           action="/Backend/sesion/crearUser.php"
           method="post"
         >
-          <label for="correo">
+          <label for="email">
             <input
-              id="correo"
-              name="correo"
+              id="email"
+              name="email"
               type="email"
               class="user-input"
               placeholder="Dirección de email"
+              required
+            />
+          </label>
+          <label for="nombreUsuario">
+            <input
+              id="nombreUsuario"
+              name="nombre"
+              class="usuario-input"
+              placeholder="Nombre de Usuario"
               required
             />
           </label>

@@ -6,12 +6,10 @@ window.onload = function () {
     errorLabelStyle: {
       color: "#ec4490",
     },
-    validateOnInput: false,  // No muestra mientras escribes
-    validateOnBlur: false,   // No muestra al salir del input
   });
 
-  // Reglas CORREO
-  validador.addField("#usuario", [
+  // Reglas Usuario
+  validador.addField("#nombreUsuario", [
     {
       rule: "required",
       errorMessage: "Debes introducir un usuario",

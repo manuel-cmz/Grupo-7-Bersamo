@@ -7,7 +7,7 @@ require "conexion.php";
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $correo = $_POST["correo"];
-    $usuario = $_POST["usuario"]
+    $usuario = $_POST["usuario"];
     $contrasena = $_POST["contrasena"];
     $edad = $_POST["edad"];
     $telefono = $_POST["telefono"];

@@ -63,7 +63,7 @@ input:hover {
 }
 
 ::placeholder {
-  color: black;
+  color: gray;
   font-size: 18px;
 }
 

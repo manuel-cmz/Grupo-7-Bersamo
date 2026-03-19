@@ -9,14 +9,14 @@ const validador = new JustValidate("#formulario", {
 });
 
 // Reglas CORREO
-validador.addField("#correo", [
+validador.addField("#email", [
   {
     rule: "required",
-    errorMessage: "Debes introducir un correo",
+    errorMessage: "Debes introducir un email",
   },
   {
     rule: "email",
-    errorMessage: "El correo debe ser válido",
+    errorMessage: "El email debe ser válido",
   },
 ]);
 //Reglas EDAD 
@@ -69,18 +69,18 @@ validador.addField("#contrasena", [
 
 // Se ejecuta al pulsar Enviar si no haber errores y enviar a a lologin.php
 validador.onSuccess((e) => {
-  const correoInput = document.getElementById("correo").value;
-  localStorage.setItem("correo", correoInput);
+  const emailInput = document.getElementById("email").value;
+  localStorage.setItem("email", emailInput);
   alert("Ha entrado al área cliente");
 
   e.target.submit(); //  ir a login.php
 });
 
-//Cargar correo guardado al abrir la página
+//Cargar email guardado al abrir la página
 window.addEventListener("DOMContentLoaded", () => {
-  let correoGuardado = localStorage.getItem("correo");
-  if (correoGuardado) {
-    document.getElementById("correo").value = correoGuardado;
+  let emailGuardado = localStorage.getItem("email");
+  if (emailGuardado) {
+    document.getElementById("email").value = correoGuardado;
   }
 });
 }
