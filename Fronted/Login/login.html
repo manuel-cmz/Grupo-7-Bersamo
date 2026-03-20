@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Bersamo</title>
-    <link rel="stylesheet" href="cssLogin.css" />
-    <script src="scriptsLogin.js"></script>
+    <link rel="stylesheet" href="cssLogin.css" />   
     <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+    <script src="scriptsLogin.js"></script>
   </head>
   <body>
     <main class="main-container">
@@ -18,7 +18,7 @@
         <form
           id="formulario"
           class="form-container"
-          action="/Backend/sesion/login.php"
+          action="../../Backend/sesion/login.php"
           method="post"
         >
           <label for="usuario">
@@ -49,7 +49,7 @@
         </form>
         <p>
           Si no tienes cuenta,
-          <a href="/Fronted/Sign Up/indexSignUp.html" class="link"
+          <a href="../SignUp/signUp.html" class="link"
             >Registrate</a
           >
         </p>

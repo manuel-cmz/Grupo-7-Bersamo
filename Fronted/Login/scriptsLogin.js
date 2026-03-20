@@ -51,15 +51,15 @@ window.onload = function () {
 
   // 4. Se ejecuta SOLO si no hay errores al pulsar Enviar
   validador.onSuccess((e) => {
-    const correoInput = document.getElementById("correo").value;
-    localStorage.setItem("correo", correoInput);
-    alert("Ha entrado al área cliente");
-    e.target.submit(); 
+  const usuarioInput = document.getElementById("usuario").value;
+  localStorage.setItem("usuario", usuarioInput);
+
+  e.target.submit(); 
   });
 
   // 5. Cargar correo guardado
-  let correoGuardado = localStorage.getItem("correo");
-  if (correoGuardado) {
-    document.getElementById("correo").value = correoGuardado;
+  let usuarioGuardado = localStorage.getItem("usuario");
+  if (usuarioGuardado) {
+    document.getElementById("usuario").value = usuarioGuardado;
   }
 };

@@ -13,7 +13,7 @@
     $_servidor = "localhost";
     $_usuario = "root";
     $_contrasena = "";
-    $_bd = "tienda_bd";
+    $_bd = "bersamo_bd";
 
     /**
      * ACTIVAR EXCEPCIONES EN MYSQLI:

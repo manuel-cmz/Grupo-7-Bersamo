@@ -29,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($contrasena == ""){
         $err_contrasena = "Inserta una contraseña";
         $correcto = false;
-    }elseif(!preg_match("/^(?=[^A-Z]*[A-Z])(?=[^0-9]*[0-9])(?=[^\w]*[\w]).{6,12}$/",$contrasena)){
+    }elseif(preg_match("/^(?=[^A-Z]*[A-Z])(?=[^0-9]*[0-9])(?=[^\w]*[\w]).{6,12}$/",$contrasena)){
         $err_contrasena = "La contraseña es válida.";
     }else{
         $err_contrasena = "La contraseña no cumple con los requisitos.";
@@ -61,14 +61,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if($correcto){
         $contrasena_cifrada = password_hash($contrasena, PASSWORD_DEFAULT);
-        $consulta = "INSERT INTO usuarios (nombre, email, contrasena, edad, telefono) VALUES ('$usuario', '$correo', '$contrasena_cifrada', '$edad', '$telefono')";
-        if($_conexion->query($consulta)){
+        $stmt = $_conexion->prepare("INSERT INTO usuarios (nombre, email, contrasena, edad, telefono) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssii", $usuario, $correo, $contrasena_cifrada, $edad, $telefono);
+        if($stmt->execute()){
             header("Location: ../../Fronted/Login/login.html");
             exit;
         }else{
             header("Location: ../../Fronted/SignUp/signUp.html?error=db"); //error no se ha podido insertar en la base de datos
             exit;
         }
+    }else{
+        header("Location: ../../Fronted/SignUp/signUp.html?error=db"); //error no se ha podido insertar en la base de datos
+            exit;
     }
 }
 ?>
